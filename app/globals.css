@@ -1,60 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap');
 @import "tailwindcss";
 
-:root { --ivory: #f7f0e2; --maroon: #571d25; --gold: #ad8135; --green: #344937; --ink: #382923; }
-* { box-sizing: border-box; }
-html { background: #e9dbc2; }
-body { margin: 0; color: var(--ink); font-family: Georgia, "Times New Roman", serif; }
-button, a { font: inherit; }
-.invitation { min-height: 100svh; overflow: hidden; position: relative; isolation: isolate; background: var(--ivory); }
-.paper-grain { position: fixed; inset: 0; z-index: -3; opacity: .22; pointer-events: none; background-image: repeating-radial-gradient(circle at 17% 14%, rgba(87,29,37,.09) 0 .45px, transparent .55px 4px), repeating-radial-gradient(circle at 73% 68%, rgba(173,129,53,.1) 0 .4px, transparent .6px 5px); mix-blend-mode: multiply; }
-.palace-shadow { position: absolute; z-index: -2; left: -8%; right: -8%; top: 38rem; height: 38rem; opacity: .075; filter: grayscale(1) sepia(.8) contrast(1.3); background: linear-gradient(to bottom, transparent 0%, var(--ivory) 88%), url('/mysore-palace.jpg') center / cover no-repeat; mix-blend-mode: multiply; }
-.frame { position: fixed; pointer-events: none; inset: 14px; border: 1px solid rgba(173,129,53,.72); z-index: 5; }
-.frame--inner { inset: 21px; border-color: rgba(173,129,53,.28); }
-.content { width: min(100%, 720px); margin: 0 auto; padding: 92px 40px 52px; opacity: 0; transform: translateY(12px); transition: opacity .7s ease, transform .7s ease; }
-.invitation--open .content { opacity: 1; transform: none; }
-.section { text-align: center; position: relative; }
-.hero { min-height: 61svh; display: grid; align-content: center; justify-items: center; }
-.eyebrow, .section-label, .hero__kicker { color: var(--green); font-family: Arial, sans-serif; font-size: .68rem; letter-spacing: .19em; line-height: 1.7; margin: 0; text-transform: uppercase; }
-.invocation { font-size: clamp(.9rem, 2.5vw, 1.12rem); line-height: 1.7; margin: 14px 0 25px; color: var(--maroon); }
-.ornament { align-items: center; color: var(--gold); display: flex; gap: 10px; margin: 0 auto 22px; width: min(240px, 65vw); }
-.ornament span { background: var(--gold); height: 1px; flex: 1; }
-.ornament b { font-size: .78rem; font-weight: normal; }
-.hero__kicker { margin-bottom: 11px; color: var(--maroon); }
-h2 { color: var(--maroon); font-size: clamp(3.6rem, 12vw, 6.5rem); font-weight: 400; letter-spacing: -.06em; line-height: .88; margin: 0; text-wrap: balance; }
-h2 i, h1 i { color: var(--gold); font-size: .46em; font-weight: 400; padding: 0 .1em; }
-.hero__date { border-top: 1px solid rgba(173,129,53,.65); color: var(--green); font-family: Arial, sans-serif; font-size: .73rem; letter-spacing: .13em; margin-top: 32px; padding-top: 15px; text-transform: uppercase; }
-.hero__date span { color: var(--gold); padding: 0 6px; }
-.schedule { padding: 36px 0 72px; }
-.time-card { border: 1px solid rgba(173,129,53,.6); border-radius: 3px; display: grid; grid-template-columns: 1fr 1px 1fr; margin: 21px auto 28px; max-width: 425px; padding: 19px 15px; }
-.time-card__date, .time-card__time { align-items: center; display: flex; gap: 10px; justify-content: center; }
-.time-card strong { color: var(--maroon); font-size: 2.6rem; font-weight: 400; line-height: 1; }
-.time-card span { color: var(--green); font-family: Arial, sans-serif; font-size: .62rem; letter-spacing: .13em; line-height: 1.5; text-align: left; text-transform: uppercase; }
-.time-card__line { background: rgba(173,129,53,.7); margin: 2px 0; }
-.programme { margin: 0 auto; max-width: 425px; text-align: left; }
-.programme p { border-bottom: 1px solid rgba(87,29,37,.13); display: grid; grid-template-columns: 30px 1fr auto; gap: 6px; align-items: baseline; margin: 0; padding: 15px 0; }
-.programme span { color: var(--gold); font-family: Arial, sans-serif; font-size: .65rem; letter-spacing: .08em; }
-.programme b { color: var(--maroon); font-size: 1.08rem; font-weight: 400; }
-.programme em { color: var(--green); font-family: Arial, sans-serif; font-size: .63rem; font-style: normal; letter-spacing: .04em; text-align: right; }
-.venue { border-top: 1px solid rgba(173,129,53,.55); border-bottom: 1px solid rgba(173,129,53,.55); padding: 56px 16px; }
-h3 { color: var(--maroon); font-size: clamp(2rem, 6vw, 2.7rem); font-weight: 400; letter-spacing: -.035em; margin: 11px 0 10px; }
-address { color: var(--green); font-size: 1.06rem; font-style: normal; line-height: 1.62; }
-.venue__actions { display: flex; flex-wrap: wrap; gap: 11px; justify-content: center; margin-top: 26px; }
-.map-button, .copy-button, .open-button { align-items: center; border: 1px solid var(--maroon); cursor: pointer; display: inline-flex; justify-content: center; min-height: 46px; padding: 0 18px; text-decoration: none; transition: background .2s ease, color .2s ease, transform .2s ease; }
-.map-button, .open-button { background: var(--maroon); color: var(--ivory); }
-.map-button:hover, .open-button:hover { background: var(--gold); border-color: var(--gold); transform: translateY(-2px); }
-.map-button span, .open-button span { margin-left: 10px; }
-.copy-button { background: transparent; color: var(--maroon); }
-.copy-button:hover { background: rgba(87,29,37,.07); }
-.closing { padding: 64px 0 22px; }
-.ornament--small { margin-bottom: 23px; width: 126px; }
-.family { color: var(--maroon); font-size: clamp(1.2rem, 3vw, 1.55rem); font-style: italic; line-height: 1.5; margin: 10px 0 26px; }
-.closing__note { color: var(--green); font-size: .93rem; font-style: italic; margin: 0; }
-.welcome { align-content: center; background: var(--ivory); display: grid; inset: 0; justify-items: center; padding: 56px 40px; position: fixed; text-align: center; z-index: 10; }
-.welcome__mark { display: flex; gap: 5px; height: 34px; margin-bottom: 25px; transform: rotate(180deg); }
-.welcome__mark span { background: var(--gold); border-radius: 20px 20px 3px 3px; display: block; height: 25px; width: 5px; }
-.welcome__mark span:nth-child(2) { height: 34px; }
-h1 { color: var(--maroon); font-size: clamp(3.3rem, 12vw, 5.8rem); font-weight: 400; letter-spacing: -.07em; line-height: .93; margin: 12px 0 17px; }
-.welcome__event { color: var(--green); font-family: Arial, sans-serif; font-size: .67rem; letter-spacing: .17em; margin: 0 0 32px; text-transform: uppercase; }
-.open-button { font-family: Arial, sans-serif; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; }
-@media (max-width: 480px) { .content { padding: 82px 30px 45px; } .programme p { grid-template-columns: 24px 1fr; } .programme em { grid-column: 2; text-align: left; } .time-card { margin-left: -4px; margin-right: -4px; } .time-card strong { font-size: 2.25rem; } }
-@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+:root { --maroon:#3b0d16; --ivory:#f2e4c9; --paper:#fff8ea; --green:#203f33; --brass:#b68b45; --brass-dark:#7e5b28; --terracotta:#9e3f2d; --ink:#241713; }
+* { box-sizing:border-box; }
+html { background:var(--maroon); scroll-behavior:smooth; }
+body { margin:0; background:var(--ivory); color:var(--ink); font-family:Manrope,Arial,sans-serif; }
+button,a { font:inherit; } button { cursor:pointer; }
+.sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; }
+.invite { min-height:100svh; overflow:hidden; isolation:isolate; position:relative; background:var(--ivory); }
+.zari-rails { position:fixed; inset:12px 12px 0; z-index:20; display:flex; justify-content:space-between; pointer-events:none; }
+.zari-rails i { width:3px; height:100%; opacity:.72; background:linear-gradient(var(--brass),#efcf8d 12%,var(--brass-dark) 29%,#dfb668 55%,var(--brass-dark) 74%,var(--brass)); }
+.invite--opened .zari-rails { mix-blend-mode:multiply; }
+
+/* The actual palace arch does the framing; text sits in a deliberately quiet field. */
+.threshold { position:fixed; inset:0; z-index:30; display:grid; place-items:center; min-height:100svh; overflow:hidden; color:var(--ivory); background:var(--maroon); text-align:center; }
+.threshold__photo { position:absolute; inset:19% 0 0; z-index:-3; background:url('/mysore-palace.jpg') center bottom/cover no-repeat; filter:sepia(.55) hue-rotate(325deg) saturate(.48) contrast(1.12); opacity:.75; mask-image:linear-gradient(transparent 0%,#000 26%,#000 100%); }
+.threshold__veil { position:absolute; inset:0; z-index:-2; background:linear-gradient(180deg,var(--maroon) 0%,rgba(59,13,22,.94) 29%,rgba(59,13,22,.66) 54%,rgba(59,13,22,.28) 100%),radial-gradient(ellipse 44% 30% at 50% 57%,rgba(59,13,22,.91),transparent 78%); }
+.threshold__top { position:absolute; top:clamp(48px,9svh,92px); width:min(80%,500px); font:500 clamp(.62rem,2.4vw,.75rem)/1.85 Manrope,sans-serif; letter-spacing:.13em; text-transform:uppercase; }
+.threshold__top p { margin:0; }
+.threshold__center { position:relative; display:grid; justify-items:center; gap:0; width:min(83%,450px); margin-top:12svh; padding:28px 16px; }
+.threshold__center::before { content:""; position:absolute; inset:-26px -14px; z-index:-1; background:radial-gradient(ellipse,rgba(59,13,22,.96) 0%,rgba(59,13,22,.64) 52%,transparent 75%); }
+.threshold__names { margin:0; color:#fff7e8; font:500 clamp(2.5rem,10vw,4.4rem)/.9 Newsreader,Georgia,serif; letter-spacing:-.06em; }
+.threshold__names i { color:#d9b46c; font-style:italic; font-size:.62em; padding:0 .06em; }
+.threshold__label { margin:19px 0 10px; color:#f4d99f; font-size:.66rem; font-weight:600; letter-spacing:.19em; text-transform:uppercase; }
+.threshold__date { color:rgba(255,248,234,.84); font-size:.63rem; letter-spacing:.1em; }
+.threshold__open { margin-top:28px; padding:0 0 10px; border:0; border-bottom:1px solid #e6c276; color:#f7dfaa; background:transparent; font-size:.68rem; font-weight:600; letter-spacing:.15em; text-transform:uppercase; }
+.threshold__open span { margin-left:9px; font-size:1rem; }
+
+.story { opacity:0; transform:translateY(8px); pointer-events:none; transition:opacity .42s ease .34s,transform .42s ease .34s; }
+.invite--opened .story { opacity:1; transform:none; pointer-events:auto; }
+.scene { position:relative; display:grid; align-content:center; min-height:94svh; overflow:hidden; padding:clamp(78px,12svh,126px) max(32px,8vw); text-align:center; }
+.utility-copy { margin:0; color:var(--green); font-size:.65rem; font-weight:600; letter-spacing:.18em; line-height:1.7; text-transform:uppercase; }
+.zari-mark { display:flex; align-items:center; gap:7px; width:88px; height:12px; margin:24px auto; color:var(--brass); }
+.zari-mark i { display:block; flex:1; height:1px; background:currentColor; }.zari-mark b { width:8px; height:8px; border:1px solid currentColor; transform:rotate(45deg); }
+h1,h2 { font-family:Newsreader,Georgia,serif; font-weight:500; }
+
+.hero { min-height:100svh; background:var(--paper); }
+.hero__invocation { margin-top:12px; color:var(--maroon); font:500 clamp(.94rem,3vw,1.08rem)/1.65 Newsreader,Georgia,serif; }
+.hero__occasion { margin:34px 0 20px; color:var(--terracotta); font-size:.65rem; font-weight:600; letter-spacing:.21em; text-transform:uppercase; }
+h1 { position:relative; z-index:1; display:grid; margin:0; color:var(--maroon); font-size:clamp(4.25rem,16vw,8rem); letter-spacing:-.075em; line-height:.74; }
+h1 em { justify-self:center; width:auto; margin:.26em 0 .22em; color:var(--brass-dark); font-size:.37em; font-style:italic; letter-spacing:0; }
+.hero__date { display:flex; justify-content:center; gap:11px; margin-top:38px; color:var(--green); font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; }
+.hero__date b { color:var(--brass-dark); font-weight:600; }.hero__date span:first-child::after,.hero__date b::after { content:"·"; margin-left:11px; color:var(--brass); }
+.hero__palace { position:absolute; inset:auto 0 0; z-index:0; height:28svh; opacity:.11; background:linear-gradient(transparent 0%,rgba(255,248,234,.98) 92%),url('/mysore-palace.jpg') center bottom/cover no-repeat; filter:sepia(1) saturate(.5) contrast(1.14); mix-blend-mode:multiply; mask-image:linear-gradient(transparent,#000 35%,#000); }
+
+.time-scene { min-height:100svh; background:var(--green); color:var(--ivory); }
+.time-scene__number { position:absolute; z-index:0; left:50%; top:49%; transform:translate(-50%,-50%); color:rgba(242,228,201,.07); font:600 clamp(18rem,68vw,38rem)/.65 Newsreader,Georgia,serif; letter-spacing:-.15em; }
+.time-scene__content { position:relative; z-index:1; display:grid; justify-items:center; }.time-scene .utility-copy,.time-scene__onwards,.time-scene h2 span { color:#d9bc80; }
+.time-scene h2 { margin:12px 0 0; font-size:clamp(3rem,11vw,5.5rem); line-height:.9; letter-spacing:-.07em; }.time-scene h2 span { display:block; margin-top:8px; font:500 .22em/1 Manrope,sans-serif; letter-spacing:.24em; text-transform:uppercase; }
+.time-scene .zari-mark { color:#d6b46e; }.time-scene__hour { margin:16px 0 2px; font:500 clamp(4.7rem,18vw,9rem)/.85 Newsreader,Georgia,serif; letter-spacing:-.09em; }.time-scene__hour small { font:500 .22em/1 Manrope,sans-serif; letter-spacing:.12em; vertical-align:middle; }
+.time-scene__onwards { margin:0; font-size:.65rem; letter-spacing:.3em; text-transform:uppercase; }.time-scene__note { margin:56px 0 0; color:rgba(242,228,201,.66); font-size:.62rem; letter-spacing:.19em; text-transform:uppercase; }
+
+.programme-scene { min-height:94svh; background:var(--paper); text-align:left; }.programme-scene__heading { text-align:center; }.programme-scene h2 { margin:9px 0 0; color:var(--maroon); font-size:clamp(2.55rem,8.5vw,4.1rem); letter-spacing:-.07em; line-height:.95; }
+.ceremony-path { position:relative; width:min(100%,470px); margin:clamp(56px,9svh,78px) auto 0; }.ceremony-path::before { content:""; position:absolute; top:14px; bottom:29px; left:67px; width:1px; background:linear-gradient(transparent,var(--brass) 9%,var(--brass) 88%,transparent); transform:scaleY(0); transform-origin:top; transition:transform 1.2s cubic-bezier(.22,1,.36,1) .25s; }.is-visible .ceremony-path::before { transform:scaleY(1); }
+.moment { position:relative; display:grid; grid-template-columns:42px 52px 1fr; min-height:128px; }.moment__index { padding-top:5px; color:var(--brass-dark); font-size:.65rem; font-weight:600; letter-spacing:.12em; }.moment__dot { justify-self:center; width:15px; height:15px; margin-top:1px; border:1px solid var(--brass); border-radius:50%; background:var(--paper); box-shadow:0 0 0 5px var(--paper); }.moment:first-child .moment__dot { background:var(--brass); }.moment p { margin:0; color:var(--maroon); font:500 clamp(1.62rem,5.7vw,2.2rem)/1 Newsreader,Georgia,serif; letter-spacing:-.045em; }.moment small { display:block; margin-top:10px; color:var(--green); font-size:.67rem; letter-spacing:.08em; }.moment--interlude p { font-size:clamp(1.43rem,5vw,1.85rem); font-style:italic; }
+
+.venue-scene { min-height:100svh; background:var(--maroon); color:var(--ivory); }.venue-scene__image { position:absolute; inset:auto 0 0; z-index:0; height:37svh; opacity:.12; background:linear-gradient(transparent,rgba(59,13,22,.96) 88%),url('/mysore-palace.jpg') center 72%/cover no-repeat; filter:sepia(.65) hue-rotate(326deg) saturate(.5); mask-image:linear-gradient(transparent,#000 28%,#000); }.venue-scene>*:not(.venue-scene__image) { position:relative; z-index:1; }.venue-scene .utility-copy { color:#ddb96f; }.venue-scene h2 { margin:12px 0 0; color:var(--ivory); font-size:clamp(3rem,11vw,5.4rem); line-height:.9; letter-spacing:-.075em; }.venue-scene__city { margin:14px 0 0; color:#e5c88e; font-size:.67rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; }.venue-scene .zari-mark { color:#d6ae5d; }.venue-scene address { color:#f2e4c9; font:400 clamp(1.15rem,3.7vw,1.35rem)/1.6 Newsreader,Georgia,serif; }.venue-scene__actions { display:grid; justify-items:center; gap:14px; margin-top:34px; }
+.directions { display:inline-flex; align-items:center; justify-content:center; min-height:52px; padding:0 21px; background:var(--ivory); color:var(--maroon); font-size:.68rem; font-weight:600; letter-spacing:.15em; text-decoration:none; text-transform:uppercase; transition:transform .2s ease,background .2s ease; }.directions:hover { transform:translateY(-3px); background:var(--paper); }.directions span,.share span { margin-left:12px; font-size:1rem; }.copy-address { padding:0 0 7px; border:0; border-bottom:1px solid rgba(242,228,201,.65); background:none; color:#e9cf9a; font-size:.66rem; font-weight:600; letter-spacing:.13em; text-transform:uppercase; }
+
+.closing-scene { min-height:80svh; background:var(--ivory); }.closing-scene__image { width:92px; height:64px; margin:0 auto 27px; border:1px solid rgba(182,139,69,.58); background:linear-gradient(rgba(242,228,201,.12),rgba(242,228,201,.12)),url('/mysore-palace.jpg') center 63%/210px auto no-repeat; filter:sepia(.65) saturate(.56) contrast(1.06); }.closing-scene__family { margin:14px 0 36px; color:var(--maroon); font:500 clamp(1.4rem,4.5vw,1.85rem)/1.43 Newsreader,Georgia,serif; }.share { min-height:48px; padding:13px 18px; border:1px solid var(--brass-dark); background:transparent; color:var(--maroon); font-size:.65rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; }
+
+.reveal>*:not(.hero__palace):not(.time-scene__number):not(.venue-scene__image) { opacity:0; transform:translateY(18px); transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1); }.reveal.is-visible>*:not(.hero__palace):not(.time-scene__number):not(.venue-scene__image) { opacity:1; transform:none; }.reveal.is-visible>*:nth-child(2) { transition-delay:.1s; }.reveal.is-visible>*:nth-child(3) { transition-delay:.18s; }.reveal.is-visible>*:nth-child(4) { transition-delay:.26s; }
+@media (min-width:720px) { .scene { padding-left:max(80px,10vw); padding-right:max(80px,10vw); }.zari-rails { inset:16px 16px 0; }.zari-rails i { width:4px; }.moment { grid-template-columns:55px 65px 1fr; }.ceremony-path::before { left:87px; } }
+@media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; }.story,.reveal>*:not(.hero__palace):not(.time-scene__number):not(.venue-scene__image),.ceremony-path::before { opacity:1!important; transform:none!important; transition:none!important; } }

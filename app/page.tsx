@@ -1,83 +1,112 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const mapUrl =
-  "https://www.google.com/maps/search/?api=1&query=Uttaradi%20Mutt%2C%204th%20Floor%2C%20Pampa%20Mahakavi%20Road%2C%20Shankarapura%2C%20Basavanagudi%2C%20Bengaluru%2C%20Karnataka%20560004";
+const mapUrl = "https://www.google.com/maps/search/?api=1&query=Uttaradi%20Mutt%2C%204th%20Floor%2C%20Pampa%20Mahakavi%20Road%2C%20Shankarapura%2C%20Basavanagudi%2C%20Bengaluru%2C%20Karnataka%20560004";
+const address = "Uttaradi Mutt, 4th Floor\nPampa Mahakavi Road, Shankarapura\nBasavanagudi, Bengaluru, Karnataka 560004";
 
-const address = `Uttaradi Mutt, 4th Floor
-Pampa Mahakavi Road, Shankarapura
-Basavanagudi, Bengaluru, Karnataka 560004`;
+function ZariMark() {
+  return <span className="zari-mark" aria-hidden="true"><i /><b /><i /></span>;
+}
 
 export default function Home() {
   const [opened, setOpened] = useState(false);
   const [copied, setCopied] = useState(false);
+  const heroRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const sections = document.querySelectorAll<HTMLElement>(".reveal");
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add("is-visible")),
+      { threshold: 0.16 },
+    );
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, [opened]);
 
   async function copyAddress() {
-    await navigator.clipboard?.writeText(address);
-    setCopied(true);
-    window.setTimeout(() => setCopied(false), 1800);
+    try {
+      await navigator.clipboard.writeText(address);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2200);
+    } catch {
+      setCopied(false);
+    }
   }
 
-  return (
-    <main className={opened ? "invitation invitation--open" : "invitation"}>
-      <div className="paper-grain" aria-hidden="true" />
-      <div className="palace-shadow" aria-hidden="true" />
-      <div className="frame frame--outer" aria-hidden="true" />
-      <div className="frame frame--inner" aria-hidden="true" />
+  async function shareInvite() {
+    const data = { title: "Bhargavi & Sukruth", text: "Engagement Ceremony - 27 August 2026 - Bengaluru", url: window.location.href };
+    if (navigator.share) await navigator.share(data);
+    else {
+      await navigator.clipboard.writeText(window.location.href);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2200);
+    }
+  }
 
-      {!opened && (
-        <section className="welcome" aria-label="Open invitation">
-          <div className="welcome__mark" aria-hidden="true"><span /><span /><span /></div>
-          <p className="eyebrow">With the blessings of our parents</p>
-          <p className="invocation">Shree Laxmi Venkateshwara Prasanna<br />Shree Halliraya Prasanna</p>
-          <h1>Bhargavi <i>&amp;</i> Sukruth</h1>
-          <p className="welcome__event">Engagement Ceremony</p>
-          <button className="open-button" onClick={() => setOpened(true)}>Open invitation <span aria-hidden="true">→</span></button>
-        </section>
-      )}
+  function openInvitation() {
+    setOpened(true);
+    window.setTimeout(() => heroRef.current?.focus({ preventScroll: true }), 420);
+  }
 
-      <div className="content">
-        <header className="hero section">
-          <p className="eyebrow">With the blessings of our parents</p>
-          <p className="invocation">Shree Laxmi Venkateshwara Prasanna<br />Shree Halliraya Prasanna</p>
-          <div className="ornament" aria-hidden="true"><span /> <b>✦</b> <span /></div>
-          <p className="hero__kicker">Engagement Ceremony</p>
-          <h2>Bhargavi <i>&amp;</i> Sukruth</h2>
-          <div className="hero__date">Thursday <span>·</span> 27 August 2026</div>
-        </header>
+  return <main className={`invite${opened ? " invite--opened" : ""}`}>
+    <div className="zari-rails" aria-hidden="true"><i /><i /></div>
+    <span className="sr-only" aria-live="polite">{copied ? "Copied to clipboard" : ""}</span>
 
-        <section className="schedule section" aria-labelledby="schedule-title">
-          <p id="schedule-title" className="section-label">The celebration</p>
-          <div className="time-card">
-            <div className="time-card__date"><strong>27</strong><span>August<br />Thursday</span></div>
-            <div className="time-card__line" aria-hidden="true" />
-            <div className="time-card__time"><strong>8:45</strong><span>AM onwards</span></div>
-          </div>
-          <div className="programme">
-            <p><span>01</span><b>Engagement Ceremony</b><em>8:45 AM onwards</em></p>
-            <p><span>02</span><b>Followed by Cake Cutting</b><em>A sweet beginning</em></p>
-            <p><span>03</span><b>Lunch</b><em>12:30 PM onwards</em></p>
-          </div>
-        </section>
-
-        <section className="venue section" aria-labelledby="venue-title">
-          <p id="venue-title" className="section-label">Venue</p>
-          <h3>Uttaradi Mutt</h3>
-          <address>4th Floor, Pampa Mahakavi Road<br />Shankarapura, Basavanagudi<br />Bengaluru, Karnataka 560004</address>
-          <div className="venue__actions">
-            <a className="map-button" href={mapUrl} target="_blank" rel="noreferrer">Get directions <span aria-hidden="true">↗</span></a>
-            <button className="copy-button" onClick={copyAddress}>{copied ? "Address copied" : "Copy address"}</button>
-          </div>
-        </section>
-
-        <footer className="closing section">
-          <div className="ornament ornament--small" aria-hidden="true"><span /> <b>✦</b> <span /></div>
-          <p className="section-label">With best compliments</p>
-          <p className="family">Smt Chaya and Shri Santosh Kumar Sandur<br />Vinayak Sandur</p>
-          <p className="closing__note">We look forward to celebrating with you.</p>
-        </footer>
+    {!opened && <section className="threshold" aria-label="Engagement invitation gateway">
+      <div className="threshold__photo" aria-hidden="true" />
+      <div className="threshold__veil" aria-hidden="true" />
+      <div className="threshold__top"><p>Shree Laxmi Venkateshwara Prasanna</p><p>Shree Halliraya Prasanna</p></div>
+      <div className="threshold__center">
+        <p className="threshold__names">Bhargavi <i>&amp;</i> Sukruth</p>
+        <p className="threshold__label">Engagement Ceremony</p>
+        <span className="threshold__date">Thursday, 27 August 2026 · Bengaluru</span>
+        <button className="threshold__open" type="button" onClick={openInvitation}>Open invitation <span aria-hidden="true">→</span></button>
       </div>
-    </main>
-  );
+    </section>}
+
+    <div className="story" aria-hidden={!opened}>
+      <section id="hero" ref={heroRef} className="scene hero reveal" tabIndex={-1}>
+        <p className="utility-copy">With the blessings of our parents</p>
+        <div className="hero__invocation">Shree Laxmi Venkateshwara Prasanna<br />Shree Halliraya Prasanna</div>
+        <ZariMark />
+        <p className="hero__occasion">Engagement Ceremony</p>
+        <h1><span>Bhargavi</span><em>&amp;</em><span>Sukruth</span></h1>
+        <div className="hero__date"><span>Thursday</span><b>27 August 2026</b><span>Bengaluru</span></div>
+        <div className="hero__palace" aria-hidden="true" />
+      </section>
+
+      <section className="scene time-scene reveal" aria-labelledby="time-title">
+        <div className="time-scene__number" aria-hidden="true">27</div>
+        <div className="time-scene__content">
+          <p id="time-title" className="utility-copy">Thursday</p><h2>August <span>2026</span></h2><ZariMark />
+          <p className="time-scene__hour">8:45 <small>AM</small></p><p className="time-scene__onwards">Onwards</p>
+          <p className="time-scene__note">The celebration begins</p>
+        </div>
+      </section>
+
+      <section className="scene programme-scene reveal" aria-labelledby="programme-title">
+        <div className="programme-scene__heading"><p id="programme-title" className="utility-copy">The celebration</p><h2>The ceremony unfolds</h2></div>
+        <div className="ceremony-path">
+          <article className="moment"><span className="moment__index">01</span><span className="moment__dot" aria-hidden="true" /><div><p>Engagement Ceremony</p><small>8:45 AM onwards</small></div></article>
+          <article className="moment moment--interlude"><span className="moment__index">02</span><span className="moment__dot" aria-hidden="true" /><div><p>Cake Cutting</p><small>Following the ceremony</small></div></article>
+          <article className="moment"><span className="moment__index">03</span><span className="moment__dot" aria-hidden="true" /><div><p>Lunch</p><small>12:30 PM onwards</small></div></article>
+        </div>
+      </section>
+
+      <section className="scene venue-scene reveal" aria-labelledby="venue-title">
+        <div className="venue-scene__image" aria-hidden="true" />
+        <p id="venue-title" className="utility-copy">Venue</p><h2>Uttaradi Mutt</h2><p className="venue-scene__city">Basavanagudi, Bengaluru</p><ZariMark />
+        <address>4th Floor, Pampa Mahakavi Road<br />Shankarapura, Basavanagudi<br />Bengaluru, Karnataka 560004</address>
+        <div className="venue-scene__actions"><a href={mapUrl} className="directions" target="_blank" rel="noreferrer">Get directions <span aria-hidden="true">↗</span></a><button type="button" className="copy-address" onClick={copyAddress}>{copied ? "Address copied" : "Copy address"}</button></div>
+      </section>
+
+      <footer className="scene closing-scene reveal">
+        <div className="closing-scene__image" aria-hidden="true" />
+        <p className="utility-copy">With best compliments</p>
+        <p className="closing-scene__family">Smt Chaya and Shri Santosh Kumar Sandur<br />Vinayak Sandur</p>
+        <button className="share" type="button" onClick={shareInvite}>Share invitation <span aria-hidden="true">↗</span></button>
+      </footer>
+    </div>
+  </main>;
 }
