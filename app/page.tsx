@@ -103,7 +103,7 @@ export default function Home() {
           <div className="intro-paper__grain" aria-hidden="true" />
           <div className="hero__content">
             <p className="utility-copy">With the blessings of our parents</p>
-            <div className="hero__invocation">Shree Laxmi Venkateshwara Prasanna<br />Shree Halliraya Prasanna</div>
+            <div className="hero__invitation">We would love your presence on this auspicious day</div>
             <ZariMark />
             <p className="hero__occasion">Engagement Ceremony</p>
             <h1><span>Bhargavi</span><em>&amp;</em><span>Sukruth</span></h1>
@@ -119,7 +119,7 @@ export default function Home() {
         <div className="time-scene__number" aria-hidden="true">27</div>
         <div className="time-scene__content">
           <p id="time-title" className="utility-copy">Thursday</p>
-          <p className="time-scene__date"><b>27</b><span>August</span><small>2026</small></p><ZariMark />
+          <p className="time-scene__date"><span>27 August</span><small>2026</small></p><ZariMark />
           <p className="time-scene__hour">8:45 <small>AM</small></p><p className="time-scene__onwards">Onwards</p>
           <p className="time-scene__note">The celebration begins</p>
         </div>
