@@ -19,13 +19,13 @@ export const metadata: Metadata = {
     siteName: "Bhargavi & Sukruth — Engagement Ceremony",
     title: "Bhargavi & Sukruth — Engagement Ceremony",
     description: "27 August 2026 · Bengaluru",
-    images: [{ url: "/og.png", width: 1735, height: 910, alt: "Bhargavi and Sukruth engagement ceremony invitation" }],
+    images: [{ url: "/og.jpg", width: 1735, height: 910, alt: "Bhargavi and Sukruth engagement ceremony invitation" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Bhargavi & Sukruth — Engagement Ceremony",
     description: "27 August 2026 · Bengaluru",
-    images: ["/og.png"],
+    images: ["/og.jpg"],
   },
 };
 
