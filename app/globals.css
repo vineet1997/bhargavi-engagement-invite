@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+:root { --ivory: #f7f0e2; --maroon: #571d25; --gold: #ad8135; --green: #344937; --ink: #382923; }
+* { box-sizing: border-box; }
+html { background: #e9dbc2; }
+body { margin: 0; color: var(--ink); font-family: Georgia, "Times New Roman", serif; }
+button, a { font: inherit; }
+.invitation { min-height: 100svh; overflow: hidden; position: relative; isolation: isolate; background: var(--ivory); }
+.paper-grain { position: fixed; inset: 0; z-index: -3; opacity: .22; pointer-events: none; background-image: repeating-radial-gradient(circle at 17% 14%, rgba(87,29,37,.09) 0 .45px, transparent .55px 4px), repeating-radial-gradient(circle at 73% 68%, rgba(173,129,53,.1) 0 .4px, transparent .6px 5px); mix-blend-mode: multiply; }
+.palace-shadow { position: absolute; z-index: -2; left: -8%; right: -8%; top: 38rem; height: 38rem; opacity: .075; filter: grayscale(1) sepia(.8) contrast(1.3); background: linear-gradient(to bottom, transparent 0%, var(--ivory) 88%), url('/mysore-palace.jpg') center / cover no-repeat; mix-blend-mode: multiply; }
+.frame { position: fixed; pointer-events: none; inset: 14px; border: 1px solid rgba(173,129,53,.72); z-index: 5; }
+.frame--inner { inset: 21px; border-color: rgba(173,129,53,.28); }
+.content { width: min(100%, 720px); margin: 0 auto; padding: 92px 40px 52px; opacity: 0; transform: translateY(12px); transition: opacity .7s ease, transform .7s ease; }
+.invitation--open .content { opacity: 1; transform: none; }
+.section { text-align: center; position: relative; }
+.hero { min-height: 61svh; display: grid; align-content: center; justify-items: center; }
+.eyebrow, .section-label, .hero__kicker { color: var(--green); font-family: Arial, sans-serif; font-size: .68rem; letter-spacing: .19em; line-height: 1.7; margin: 0; text-transform: uppercase; }
+.invocation { font-size: clamp(.9rem, 2.5vw, 1.12rem); line-height: 1.7; margin: 14px 0 25px; color: var(--maroon); }
+.ornament { align-items: center; color: var(--gold); display: flex; gap: 10px; margin: 0 auto 22px; width: min(240px, 65vw); }
+.ornament span { background: var(--gold); height: 1px; flex: 1; }
+.ornament b { font-size: .78rem; font-weight: normal; }
+.hero__kicker { margin-bottom: 11px; color: var(--maroon); }
+h2 { color: var(--maroon); font-size: clamp(3.6rem, 12vw, 6.5rem); font-weight: 400; letter-spacing: -.06em; line-height: .88; margin: 0; text-wrap: balance; }
+h2 i, h1 i { color: var(--gold); font-size: .46em; font-weight: 400; padding: 0 .1em; }
+.hero__date { border-top: 1px solid rgba(173,129,53,.65); color: var(--green); font-family: Arial, sans-serif; font-size: .73rem; letter-spacing: .13em; margin-top: 32px; padding-top: 15px; text-transform: uppercase; }
+.hero__date span { color: var(--gold); padding: 0 6px; }
+.schedule { padding: 36px 0 72px; }
+.time-card { border: 1px solid rgba(173,129,53,.6); border-radius: 3px; display: grid; grid-template-columns: 1fr 1px 1fr; margin: 21px auto 28px; max-width: 425px; padding: 19px 15px; }
+.time-card__date, .time-card__time { align-items: center; display: flex; gap: 10px; justify-content: center; }
+.time-card strong { color: var(--maroon); font-size: 2.6rem; font-weight: 400; line-height: 1; }
+.time-card span { color: var(--green); font-family: Arial, sans-serif; font-size: .62rem; letter-spacing: .13em; line-height: 1.5; text-align: left; text-transform: uppercase; }
+.time-card__line { background: rgba(173,129,53,.7); margin: 2px 0; }
+.programme { margin: 0 auto; max-width: 425px; text-align: left; }
+.programme p { border-bottom: 1px solid rgba(87,29,37,.13); display: grid; grid-template-columns: 30px 1fr auto; gap: 6px; align-items: baseline; margin: 0; padding: 15px 0; }
+.programme span { color: var(--gold); font-family: Arial, sans-serif; font-size: .65rem; letter-spacing: .08em; }
+.programme b { color: var(--maroon); font-size: 1.08rem; font-weight: 400; }
+.programme em { color: var(--green); font-family: Arial, sans-serif; font-size: .63rem; font-style: normal; letter-spacing: .04em; text-align: right; }
+.venue { border-top: 1px solid rgba(173,129,53,.55); border-bottom: 1px solid rgba(173,129,53,.55); padding: 56px 16px; }
+h3 { color: var(--maroon); font-size: clamp(2rem, 6vw, 2.7rem); font-weight: 400; letter-spacing: -.035em; margin: 11px 0 10px; }
+address { color: var(--green); font-size: 1.06rem; font-style: normal; line-height: 1.62; }
+.venue__actions { display: flex; flex-wrap: wrap; gap: 11px; justify-content: center; margin-top: 26px; }
+.map-button, .copy-button, .open-button { align-items: center; border: 1px solid var(--maroon); cursor: pointer; display: inline-flex; justify-content: center; min-height: 46px; padding: 0 18px; text-decoration: none; transition: background .2s ease, color .2s ease, transform .2s ease; }
+.map-button, .open-button { background: var(--maroon); color: var(--ivory); }
+.map-button:hover, .open-button:hover { background: var(--gold); border-color: var(--gold); transform: translateY(-2px); }
+.map-button span, .open-button span { margin-left: 10px; }
+.copy-button { background: transparent; color: var(--maroon); }
+.copy-button:hover { background: rgba(87,29,37,.07); }
+.closing { padding: 64px 0 22px; }
+.ornament--small { margin-bottom: 23px; width: 126px; }
+.family { color: var(--maroon); font-size: clamp(1.2rem, 3vw, 1.55rem); font-style: italic; line-height: 1.5; margin: 10px 0 26px; }
+.closing__note { color: var(--green); font-size: .93rem; font-style: italic; margin: 0; }
+.welcome { align-content: center; background: var(--ivory); display: grid; inset: 0; justify-items: center; padding: 56px 40px; position: fixed; text-align: center; z-index: 10; }
+.welcome__mark { display: flex; gap: 5px; height: 34px; margin-bottom: 25px; transform: rotate(180deg); }
+.welcome__mark span { background: var(--gold); border-radius: 20px 20px 3px 3px; display: block; height: 25px; width: 5px; }
+.welcome__mark span:nth-child(2) { height: 34px; }
+h1 { color: var(--maroon); font-size: clamp(3.3rem, 12vw, 5.8rem); font-weight: 400; letter-spacing: -.07em; line-height: .93; margin: 12px 0 17px; }
+.welcome__event { color: var(--green); font-family: Arial, sans-serif; font-size: .67rem; letter-spacing: .17em; margin: 0 0 32px; text-transform: uppercase; }
+.open-button { font-family: Arial, sans-serif; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; }
+@media (max-width: 480px) { .content { padding: 82px 30px 45px; } .programme p { grid-template-columns: 24px 1fr; } .programme em { grid-column: 2; text-align: left; } .time-card { margin-left: -4px; margin-right: -4px; } .time-card strong { font-size: 2.25rem; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
