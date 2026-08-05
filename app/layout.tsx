@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://bhargavi-sukruth-engagement-2026.kaladin1997.chatgpt.site"),
+  metadataBase: new URL("https://bhargavi-engagement-invite.vercel.app"),
   title: "Bhargavi & Sukruth — Engagement Ceremony",
   description: "Join us for the engagement ceremony of Bhargavi and Sukruth on Thursday, 27 August 2026 in Bengaluru.",
   applicationName: "Bhargavi & Sukruth — Engagement Ceremony",

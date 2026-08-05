@@ -1,34 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap');
 @import "tailwindcss";
 
-:root { --maroon:#3b0d16; --ivory:#f2e4c9; --paper:#fff8ea; --green:#203f33; --brass:#b68b45; --brass-dark:#7e5b28; --terracotta:#9e3f2d; --ink:#241713; }
+:root { --maroon:#3b0d16; --ivory:#f2e4c9; --paper:#fff8ea; --green:#203f33; --brass:#b68b45; --brass-dark:#7e5b28; --terracotta:#9e3f2d; --ink:#241713; --mobile-palace-x:47.5%; }
 * { box-sizing:border-box; }
 html { background:var(--maroon); scroll-behavior:smooth; }
 body { margin:0; background:var(--ivory); color:var(--ink); font-family:Manrope,Arial,sans-serif; }
 button,a { font:inherit; } button { cursor:pointer; }
 .sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; }
-.invite { min-height:100svh; overflow:hidden; isolation:isolate; position:relative; background:var(--ivory); }
+.invite { min-height:100svh; overflow:visible; isolation:isolate; position:relative; background:var(--ivory); }
 .zari-rails { position:fixed; inset:12px 12px 0; z-index:20; display:flex; justify-content:space-between; pointer-events:none; }
 .zari-rails i { width:3px; height:100%; opacity:.72; background:linear-gradient(var(--brass),#efcf8d 12%,var(--brass-dark) 29%,#dfb668 55%,var(--brass-dark) 74%,var(--brass)); }
-.invite--opened .zari-rails { mix-blend-mode:multiply; }
+.zari-rails { mix-blend-mode:multiply; }
+.skip-link { position:fixed; z-index:50; top:12px; left:50%; padding:10px 14px; color:var(--maroon); background:var(--paper); transform:translate(-50%,-180%); transition:transform .2s ease; font-size:.7rem; letter-spacing:.08em; text-decoration:none; text-transform:uppercase; }.skip-link:focus { transform:translate(-50%,0); }
 
-/* The actual palace arch does the framing; text sits in a deliberately quiet field. */
-.threshold { position:fixed; inset:0; z-index:30; display:grid; place-items:center; min-height:100svh; overflow:hidden; color:var(--ivory); background:var(--maroon); text-align:center; }
-.threshold__photo { position:absolute; inset:19% 0 0; z-index:-3; background:url('/mysore-palace.jpg') center bottom/cover no-repeat; filter:sepia(.55) hue-rotate(325deg) saturate(.48) contrast(1.12); opacity:.75; mask-image:linear-gradient(transparent 0%,#000 26%,#000 100%); }
-.threshold__veil { position:absolute; inset:0; z-index:-2; background:linear-gradient(180deg,var(--maroon) 0%,rgba(59,13,22,.94) 29%,rgba(59,13,22,.66) 54%,rgba(59,13,22,.28) 100%),radial-gradient(ellipse 44% 30% at 50% 57%,rgba(59,13,22,.91),transparent 78%); }
-.threshold__top { position:absolute; top:clamp(48px,9svh,92px); width:min(80%,500px); font:500 clamp(.62rem,2.4vw,.75rem)/1.85 Manrope,sans-serif; letter-spacing:.13em; text-transform:uppercase; }
-.threshold__top p { margin:0; }
-.threshold__center { position:relative; display:grid; justify-items:center; gap:0; width:min(83%,450px); margin-top:12svh; padding:28px 16px; }
-.threshold__center::before { content:""; position:absolute; inset:-26px -14px; z-index:-1; background:radial-gradient(ellipse,rgba(59,13,22,.96) 0%,rgba(59,13,22,.64) 52%,transparent 75%); }
-.threshold__names { margin:0; color:#fff7e8; font:500 clamp(2.5rem,10vw,4.4rem)/.9 Newsreader,Georgia,serif; letter-spacing:-.06em; }
-.threshold__names i { color:#d9b46c; font-style:italic; font-size:.62em; padding:0 .06em; }
-.threshold__label { margin:19px 0 10px; color:#f4d99f; font-size:.66rem; font-weight:600; letter-spacing:.19em; text-transform:uppercase; }
-.threshold__date { color:rgba(255,248,234,.84); font-size:.63rem; letter-spacing:.1em; }
-.threshold__open { margin-top:28px; padding:0 0 10px; border:0; border-bottom:1px solid #e6c276; color:#f7dfaa; background:transparent; font-size:.68rem; font-weight:600; letter-spacing:.15em; text-transform:uppercase; }
-.threshold__open span { margin-left:9px; font-size:1rem; }
+/* One pinned composition: the invitation itself rises from the real central gateway, then stays put long enough to be read. */
+.intro-chapter { --intro-progress:0; --cover-copy-opacity:1; --cover-copy-lift:0; --cover-cue-opacity:1; --palace-scale:1; --palace-shift:0; --veil-opacity:.94; --paper-y:100%; position:relative; z-index:5; height:290svh; pointer-events:none; }
+.intro-stage { position:sticky; top:0; width:100%; height:100svh; overflow:hidden; color:var(--ivory); background:var(--maroon); text-align:center; }
+.cover-stage__photo { position:absolute; inset:-4%; z-index:0; background:url('/mysore-palace.jpg') center bottom/cover no-repeat; filter:sepia(.52) hue-rotate(327deg) saturate(.5) contrast(1.14); transform:translate3d(0,calc(var(--palace-shift) * 1%),0) scale(var(--palace-scale)); transform-origin:50% 67%; will-change:transform; }
+.cover-stage__veil { position:absolute; inset:0; z-index:1; opacity:var(--veil-opacity); background:linear-gradient(180deg,rgba(59,13,22,.99) 0%,rgba(59,13,22,.94) 28%,rgba(59,13,22,.66) 58%,rgba(59,13,22,.27) 100%),radial-gradient(ellipse 48% 34% at 50% 62%,rgba(59,13,22,.90),transparent 78%); }
+.cover-stage__copy { position:absolute; inset:0; z-index:3; opacity:var(--cover-copy-opacity); transform:translate3d(0,calc(var(--cover-copy-lift) * -1px),0); will-change:transform,opacity; }
+.cover-stage__top { position:absolute; top:clamp(48px,9svh,92px); left:50%; width:min(80%,500px); transform:translateX(-50%); font:500 clamp(.62rem,2.4vw,.75rem)/1.85 Manrope,sans-serif; letter-spacing:.13em; text-transform:uppercase; }.cover-stage__top p { margin:0; }
+.cover-stage__center { position:absolute; top:54%; left:50%; display:grid; justify-items:center; width:min(83%,450px); padding:28px 16px; transform:translate(-50%,-50%); }.cover-stage__center::before { content:""; position:absolute; inset:-26px -14px; z-index:-1; background:radial-gradient(ellipse,rgba(59,13,22,.96) 0%,rgba(59,13,22,.64) 52%,transparent 75%); }
+.cover-stage__names { margin:0; color:#fff7e8; font:500 clamp(2.5rem,10vw,4.4rem)/.9 Newsreader,Georgia,serif; letter-spacing:-.06em; }.cover-stage__names i { color:#d9b46c; font-size:.62em; font-style:italic; padding:0 .06em; }
+.cover-stage__label { margin:19px 0 10px; color:#f4d99f; font-size:.66rem; font-weight:600; letter-spacing:.19em; text-transform:uppercase; }.cover-stage__date { color:rgba(255,248,234,.84); font-size:.63rem; letter-spacing:.1em; }
+.cover-stage__cue { position:absolute; bottom:clamp(40px,7svh,72px); left:50%; display:grid; justify-items:center; gap:10px; margin:0; opacity:var(--cover-cue-opacity); transform:translateX(-50%); color:#f4d99f; font-size:.58rem; font-weight:600; letter-spacing:.19em; text-transform:uppercase; }.cover-stage__cue span { width:1px; height:28px; background:#e1bd74; transform-origin:top; animation:scroll-cue 1.6s ease-in-out infinite; }
+@keyframes scroll-cue { 0%,100% { transform:scaleY(.4); opacity:.45; } 50% { transform:scaleY(1); opacity:1; } }
 
-.story { opacity:0; transform:translateY(8px); pointer-events:none; transition:opacity .42s ease .34s,transform .42s ease .34s; }
-.invite--opened .story { opacity:1; transform:none; pointer-events:auto; }
+.intro-paper { position:absolute; inset:0; z-index:4; display:grid; align-content:center; min-height:100svh; overflow:hidden; padding:clamp(72px,10svh,116px) max(32px,8vw); background:var(--paper); color:var(--ink); text-align:center; transform:translate3d(0,var(--paper-y),0); will-change:transform; box-shadow:0 -12px 32px rgba(36,23,19,.18); }
+.intro-paper::after { content:""; position:absolute; top:16px; left:50%; width:min(38vw,168px); height:1px; background:var(--brass); transform:translateX(-50%); }
+.intro-paper::before { content:""; position:absolute; inset:0; z-index:-1; background:radial-gradient(circle at 50% 43%,rgba(255,255,255,.62),transparent 47%),linear-gradient(90deg,rgba(182,139,69,.05),transparent 9%,transparent 91%,rgba(182,139,69,.05)); }
+.intro-paper__grain { position:absolute; inset:0; z-index:-1; opacity:.27; background-image:repeating-linear-gradient(97deg,rgba(126,91,40,.04) 0,rgba(126,91,40,.04) 1px,transparent 1px,transparent 5px),repeating-linear-gradient(7deg,rgba(255,255,255,.22) 0,rgba(255,255,255,.22) 1px,transparent 1px,transparent 7px); mix-blend-mode:multiply; }
+.hero__content { position:relative; z-index:2; }
+.story { position:relative; z-index:1; }
 .scene { position:relative; display:grid; align-content:center; min-height:94svh; overflow:hidden; padding:clamp(78px,12svh,126px) max(32px,8vw); text-align:center; }
 .utility-copy { margin:0; color:var(--green); font-size:.65rem; font-weight:600; letter-spacing:.18em; line-height:1.7; text-transform:uppercase; }
 .zari-mark { display:flex; align-items:center; gap:7px; width:88px; height:12px; margin:24px auto; color:var(--brass); }
@@ -46,10 +49,10 @@ h1 em { justify-self:center; width:auto; margin:.26em 0 .22em; color:var(--brass
 
 .time-scene { min-height:100svh; background:var(--green); color:var(--ivory); }
 .time-scene__number { position:absolute; z-index:0; left:50%; top:49%; transform:translate(-50%,-50%); color:rgba(242,228,201,.07); font:600 clamp(18rem,68vw,38rem)/.65 Newsreader,Georgia,serif; letter-spacing:-.15em; }
-.time-scene__content { position:relative; z-index:1; display:grid; justify-items:center; }.time-scene .utility-copy,.time-scene__onwards,.time-scene h2 span { color:#d9bc80; }
-.time-scene h2 { margin:12px 0 0; font-size:clamp(3rem,11vw,5.5rem); line-height:.9; letter-spacing:-.07em; }.time-scene h2 span { display:block; margin-top:8px; font:500 .22em/1 Manrope,sans-serif; letter-spacing:.24em; text-transform:uppercase; }
-.time-scene .zari-mark { color:#d6b46e; }.time-scene__hour { margin:16px 0 2px; font:500 clamp(4.7rem,18vw,9rem)/.85 Newsreader,Georgia,serif; letter-spacing:-.09em; }.time-scene__hour small { font:500 .22em/1 Manrope,sans-serif; letter-spacing:.12em; vertical-align:middle; }
-.time-scene__onwards { margin:0; font-size:.65rem; letter-spacing:.3em; text-transform:uppercase; }.time-scene__note { margin:56px 0 0; color:rgba(242,228,201,.66); font-size:.62rem; letter-spacing:.19em; text-transform:uppercase; }
+.time-scene__content { position:relative; z-index:1; display:grid; justify-items:center; }.time-scene .utility-copy,.time-scene__onwards { color:#d9bc80; }
+.time-scene__date { display:grid; justify-items:center; margin:16px 0 0; color:var(--ivory); }.time-scene__date b { color:#d9bc80; font:600 clamp(.72rem,2.8vw,.88rem)/1 Manrope,sans-serif; letter-spacing:.22em; }.time-scene__date span { margin-top:7px; font:500 clamp(3rem,11vw,5.5rem)/.86 Newsreader,Georgia,serif; letter-spacing:-.07em; }.time-scene__date small { margin-top:10px; color:#d9bc80; font:500 .68rem/1 Manrope,sans-serif; letter-spacing:.28em; text-transform:uppercase; }
+.time-scene .zari-mark { margin:22px auto 28px; color:#d6b46e; }.time-scene__hour { margin:0; font:500 clamp(4.5rem,17vw,8.5rem)/.78 Newsreader,Georgia,serif; letter-spacing:-.09em; }.time-scene__hour small { font:500 .22em/1 Manrope,sans-serif; letter-spacing:.12em; vertical-align:middle; }
+.time-scene__onwards { margin:15px 0 0; font-size:.65rem; letter-spacing:.3em; text-transform:uppercase; }.time-scene__note { margin:58px 0 0; color:rgba(242,228,201,.66); font-size:.62rem; letter-spacing:.19em; text-transform:uppercase; }
 
 .programme-scene { min-height:94svh; background:var(--paper); text-align:left; }.programme-scene__heading { text-align:center; }.programme-scene h2 { margin:9px 0 0; color:var(--maroon); font-size:clamp(2.55rem,8.5vw,4.1rem); letter-spacing:-.07em; line-height:.95; }
 .ceremony-path { position:relative; width:min(100%,470px); margin:clamp(56px,9svh,78px) auto 0; }.ceremony-path::before { content:""; position:absolute; top:14px; bottom:29px; left:67px; width:1px; background:linear-gradient(transparent,var(--brass) 9%,var(--brass) 88%,transparent); transform:scaleY(0); transform-origin:top; transition:transform 1.2s cubic-bezier(.22,1,.36,1) .25s; }.is-visible .ceremony-path::before { transform:scaleY(1); }
@@ -60,6 +63,10 @@ h1 em { justify-self:center; width:auto; margin:.26em 0 .22em; color:var(--brass
 
 .closing-scene { min-height:80svh; background:var(--ivory); }.closing-scene__image { width:92px; height:64px; margin:0 auto 27px; border:1px solid rgba(182,139,69,.58); background:linear-gradient(rgba(242,228,201,.12),rgba(242,228,201,.12)),url('/mysore-palace.jpg') center 63%/210px auto no-repeat; filter:sepia(.65) saturate(.56) contrast(1.06); }.closing-scene__family { margin:14px 0 36px; color:var(--maroon); font:500 clamp(1.4rem,4.5vw,1.85rem)/1.43 Newsreader,Georgia,serif; }.share { min-height:48px; padding:13px 18px; border:1px solid var(--brass-dark); background:transparent; color:var(--maroon); font-size:.65rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; }
 
+/* Sticky scenes need an un-clipped ancestor; each scene handles its own cropping. */
+main.invite { overflow:visible!important; }
+
 .reveal>*:not(.hero__palace):not(.time-scene__number):not(.venue-scene__image) { opacity:0; transform:translateY(18px); transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1); }.reveal.is-visible>*:not(.hero__palace):not(.time-scene__number):not(.venue-scene__image) { opacity:1; transform:none; }.reveal.is-visible>*:nth-child(2) { transition-delay:.1s; }.reveal.is-visible>*:nth-child(3) { transition-delay:.18s; }.reveal.is-visible>*:nth-child(4) { transition-delay:.26s; }
 @media (min-width:720px) { .scene { padding-left:max(80px,10vw); padding-right:max(80px,10vw); }.zari-rails { inset:16px 16px 0; }.zari-rails i { width:4px; }.moment { grid-template-columns:55px 65px 1fr; }.ceremony-path::before { left:87px; } }
-@media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; }.story,.reveal>*:not(.hero__palace):not(.time-scene__number):not(.venue-scene__image),.ceremony-path::before { opacity:1!important; transform:none!important; transition:none!important; } }
+@media (max-width:600px) { .cover-stage__photo { inset:-8% -14%; background-size:auto 116%; background-position:var(--mobile-palace-x) 54%; } }
+@media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; }.intro-chapter { height:200svh; }.intro-stage { position:relative; height:200svh; }.cover-stage__photo,.cover-stage__veil,.cover-stage__copy { top:0; bottom:auto; height:100svh; opacity:1; transform:none; }.cover-stage__cue { display:none; }.intro-paper { top:100svh; bottom:auto; height:100svh; transform:none; }.reveal>*:not(.hero__palace):not(.time-scene__number):not(.venue-scene__image),.ceremony-path::before { opacity:1!important; transform:none!important; transition:none!important; } }
